@@ -2,10 +2,11 @@ print("\n56.")
 
 class animality():
     def creation(name, food, perk):
-        print(f'Животное: {name}\n Рацион питания: {food}\nОсобенность: {perk}')
+        print(f'Животное: {name}\nРацион питания: {food}\nОсобенность: {perk}')
 
     name = ''
     food = ''
+    perk = ''
 
 class herbivore(animality):
     fani = animality()
