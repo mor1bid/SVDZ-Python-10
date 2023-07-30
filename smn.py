@@ -1,25 +1,27 @@
 print("\n56.")
 
-class animality:
+class animality():
     def creation(name, food, perk):
         print(f'Животное: {name}\n Рацион питания: {food}\nОсобенность: {perk}')
 
-    name = '0_0'
-    food = '0_0'
+    name = ''
+    food = ''
 
 class herbivore(animality):
-
-    name = 'Травоядное'
-    food = 'Трава'
-    runsfast = True
-    animality.creation(name, food, runsfast)
+    fani = animality()
+    fani.name = 'Травоядное'
+    fani.food = 'Трава'
+    runsfast = 'Быстро бегают'
+    animality.creation(fani.name, fani.food, runsfast)
 class carnivore(animality):
-    name = 'Плотоядное'
-    food = herbivore
-    fangsclaws = True
-    animality.creation(name, food, fangsclaws)
+    sani = animality()
+    sani.name = 'Плотоядное'
+    sani.food = herbivore
+    fangsclaws = 'Очень опасны'
+    animality.creation(sani.name, sani.food, fangsclaws)
 class omnivore(animality):
-    name = 'Всеядное'
-    food = 'Трава, ' + str(herbivore)
-    cannibal = True
-    animality.creation(name, food, cannibal)
+    tani = animality()
+    tani.name = 'Всеядное'
+    tani.food = 'Трава, ' + str(herbivore)
+    cannibal = 'Едят всё'
+    animality.creation(tani.name, tani.food, cannibal)
