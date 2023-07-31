@@ -91,18 +91,18 @@ print("\n2.1.", autoinput)
 # Функция возвращает кортеж из трёх элементов путь, имя файла, расширение файла.
 
 class Pathrec:
-    def __init__(self, line, path, newpath = list()):
+    def __init__(self, line, path, newpath = list(), record = list()):
         file = path
         self.newpath = newpath
         if line not in file:
             self.newpath += line + '\\'
         file = file.split('.')
-        record = ({"Путь:", self.newpath}, {"Имя файла:", file[0]}, {"Расширение файла:", file[-1]})
+        self.record = ({"Путь:", self.newpath}, {"Имя файла:", file[0]}, {"Расширение файла:", file[-1]})
         # print(record)
     # def __pathinit__(self, newpath):
     #     return newpath
-    def recinit(self, record):
-        return record
+    def recinit(self):
+        return self.record
     def __str__(self):
         state = self.recinit()
         return str(state)
