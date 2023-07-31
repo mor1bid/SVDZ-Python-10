@@ -67,7 +67,7 @@ class Agang:
     def getitem(self):
         return self.data
     
-    def __result__(self):
+    def __str__(self):
         state = self.getitem()
         return str(state)
 
@@ -98,11 +98,14 @@ class Pathrec:
             self.newpath += line + '\\'
         file = file.split('.')
         record = ({"Путь:", self.newpath}, {"Имя файла:", file[0]}, {"Расширение файла:", file[-1]})
-        print(record)
-    def __pathinit__(self, newpath):
-        return newpath
-    def __recinit__(self, record):
+        # print(record)
+    # def __pathinit__(self, newpath):
+    #     return newpath
+    def recinit(self, record):
         return record
+    def __str__(self):
+        state = self.recinit()
+        return str(state)
 
 path = input("2.2. Здравствуйте. Введите имя желаемого файла, вместе с его расширением\n: ")
 newpath = ''
