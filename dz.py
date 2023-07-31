@@ -1,7 +1,7 @@
-from smn import animality as ani
-from smn import herbivore
-from smn import carnivore
-from smn import omnivore
+from smn import animality as Ani
+from smn import Herbivore
+from smn import Carnivore
+from smn import Omnivore
 import os
 
 # 1. Доработать задачи 5-6. Создайте класс-фабрику.
@@ -10,7 +10,7 @@ import os
 # • Внутри класса создайте экземпляр на основе переданного типа и
 # верните его из класса-фабрики.
 
-class foundry:
+class Foundry:
 
     species = ''
     name = ''
@@ -20,33 +20,32 @@ class foundry:
     def __init__(self, pick):
         match pick:
             case '1':
-                myani = herbivore()
+                myani = Herbivore()
                 myani.name = input("Введите название/имя вашего травоядного\n: ")
                 myani.food = input(f"Что ест {myani.name}?\n: ")
                 myani.perk = input(f"Что ещё можете добавить о существе {myani.name}?\n: ")
             case '2':
-                myani = carnivore()
+                myani = Carnivore()
                 myani.name = input("Введите название/имя вашего плотоядного\n: ")
                 myani.food = input(f"Кого ест {myani.name}?\n: ")
                 myani.perk = input(f"Что ещё можете добавить о существе {myani.name}?\n: ")
             case '3':
-                myani = omnivore()
+                myani = Omnivore()
                 myani.name = input("Введите название/имя вашего всеядного\n: ")
                 myani.food = input(f"Что/кого ест {myani.name}?\n: ")
                 myani.perk = input(f"Что ещё можете добавить о существе {myani.name}?\n: ")
             case 'q':
                 print('\nПриятного дня!')
                 
-        if pick != '':
-            species = myani.__class__.__name__
-            name = myani.name
-            food = myani.food
-            perk = myani.perk
+        species = myani.__class__.__name__
+        name = myani.name
+        food = myani.food
+        perk = myani.perk
 
-        print(f'Класс: {species}\n{ani.creation(name, food, perk)}')
+        print(f'Класс: {species}\n{Ani.creation(name, food, perk)}')
 
-pick = input("\n1. Здравствуйте. Выберите желаемый вид животных:\n(1) Травоядные\n(2) Плотоядные\n(3) Всеядные\n(q) Выход\n: ")
-foundry(pick)
+# pick = input("\n1. Здравствуйте. Выберите желаемый вид животных:\n(1) Травоядные\n(2) Плотоядные\n(3) Всеядные\n(q) Выход\n: ")
+# Foundry(pick)
 
 # 2. Возьмите 1-3 любые задачи из прошлых семинаров (например сериализация
 # данных), которые вы уже решали. Превратите функции в методы класса, а
@@ -59,33 +58,57 @@ foundry(pick)
 # переданного аргумента, а значение - имя аргумента. 
 # Если ключ не хешируем, используйте его строковое представление.
 
-class agang:
-    def __init__(self, i, record):
-        self._data = dict()
+class Agang:
+    def __init__(self, keybox, valbox, data = dict()):
+        self.data = data
+        self.data[keybox] = valbox
+        # print(self.data)
 
-    def __additem__(self, i, record):
-        self._data[record[i]] = i
+    def getitem(self):
+        return self.data
+    
+    def __result__(self):
+        state = self.getitem()
+        return str(state)
 
-    def __getitem__(self, i, record):
-        return self._data
 
-keybox = ['Hearr Icks', 'green', 144, None, 'Anarchist raiders']
+leader='Hearr Icks'
+teamcol='green'
+members= 144
+casualties= None
+form='Anarchist raiders'
+
+keybox = [f'{leader=}'.split('=')[0], f'{teamcol=}'.split('=')[0], f'{members=}'.split('=')[0], f'{casualties=}'.split('=')[0], f'{form=}'.split('=')[0]]
+valbox = [leader, teamcol, members, casualties, form]
 
 for i in range(len(keybox)-1):
-    # print("\n2.", agang(i, leader='Hearr Icks', color='green', members= 144, casualties= None, type='Anarchist raiders'))
-    agang(i, keybox[i])
-print("\n2.", agang(i, keybox[i]))
+    Agang(keybox[i], valbox[i])
+autoinput = Agang(keybox[i], valbox[i])
+print("\n2.1.", autoinput)
 
-# 1. Напишите функцию, которая принимает на вход строку - абсолютный путь до файла. 
+# Семинар 5 Задание № 1 
+# Напишите функцию, которая принимает на вход строку - абсолютный путь до файла. 
 # Функция возвращает кортеж из трёх элементов путь, имя файла, расширение файла.
 
-def pathrec(path):
-    absolute = os.path.abspath(path).split("\\")
-    file = path
-    path = ''
-    for l in absolute:
-        if l not in file:
-            path += l + '\\'
-    file = file.split('.')
-    record = ({"Путь:", path}, {"Имя файла:", file[0]}, {"Расширение файла:", file[-1]})
-    return record
+class Pathrec:
+    def __init__(self, line, path, newpath = list()):
+        file = path
+        self.newpath = newpath
+        if line not in file:
+            self.newpath += line + '\\'
+        file = file.split('.')
+        record = ({"Путь:", self.newpath}, {"Имя файла:", file[0]}, {"Расширение файла:", file[-1]})
+        print(record)
+    def __pathinit__(self, newpath):
+        return newpath
+    def __recinit__(self, record):
+        return record
+
+path = input("2.2. Здравствуйте. Введите имя желаемого файла, вместе с его расширением\n: ")
+newpath = ''
+absolute = os.path.abspath(path).split("\\")
+for line in range(len(absolute)):
+    Pathrec(absolute[line], path, newpath)
+    
+res = Pathrec(absolute[-1], path, newpath)
+print(f'Результат\n: {res}')

@@ -8,21 +8,23 @@ class animality():
     food = ''
     perk = ''
 
-class herbivore(animality):
+class Herbivore(animality):
     fani = animality()
     fani.name = 'Травоядное'
     fani.food = 'Трава'
     runsfast = 'Быстро бегают'
     animality.creation(fani.name, fani.food, runsfast)
-class carnivore(animality):
+
+class Carnivore(animality):
     sani = animality()
     sani.name = 'Плотоядное'
-    sani.food = herbivore
+    sani.food = Herbivore
     fangsclaws = 'Очень опасны'
     animality.creation(sani.name, sani.food, fangsclaws)
-class omnivore(animality):
+    
+class Omnivore(animality):
     tani = animality()
     tani.name = 'Всеядное'
-    tani.food = 'Трава, ' + str(herbivore)
+    tani.food = 'Трава, ' + str(Herbivore)
     cannibal = 'Едят всё'
     animality.creation(tani.name, tani.food, cannibal)
